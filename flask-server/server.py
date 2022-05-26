@@ -5,19 +5,24 @@ from annoy import AnnoyIndex
 
 import numpy as np
 import pandas as pd
-import time
+import sys
 import pickle
 
 app = Flask(__name__)
 
 # Read Dataframe and confusion matrix developed from python notebook
-dataset = pickle.load(open('../Dataset/meta_games_dict.pkl','rb'))
-ml = pickle.load(open('../Dataset/condusion_matrix_con.pkl','rb'))
+
+
+# sys.path.append('../Steam-game-recommendation-system')
+
+dataset = pickle.load(open('./../Dataset/meta_games_dict.pkl','rb'))
+ml = pickle.load(open('./../Dataset/confusion_matrix_con.pkl','rb'))
+
 
 #Using ANNOY library, finding recommendation for user selection
 def test_annoy_knn(index, Ntrees, Nsamples, method = "euclidean"):
     
-    vector_length = index.size
+    vector_length = 1459
     t = AnnoyIndex(vector_length, metric = method)
 
     for i,v in zip(range(Nsamples), ml[:Nsamples]):
@@ -30,7 +35,7 @@ def test_annoy_knn(index, Ntrees, Nsamples, method = "euclidean"):
 # Dictionary where each key represents app id of each game in dataframe and value represents the index positions in it 
 indexTable = {v: k for k, v in dataset['appid'].items()}
 
-@app.route('./recommend', method=['POST'])
+@app.route('/recommend/', methods=['POST'])
 def members():
 
     userSelectedGames = json.loads((request.data).decode('UTF-8'))['list']
