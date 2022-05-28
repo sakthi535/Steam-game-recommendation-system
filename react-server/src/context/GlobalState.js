@@ -3,7 +3,7 @@ import AppReducer from './AppReducer';
 
 // Initial state
 const initialState = {
-  Selected: [379720]
+  Selected: []
 }
 
 // Create context

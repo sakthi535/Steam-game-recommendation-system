@@ -57,7 +57,7 @@ export const Results = () => {
             </Carousel>}
 
              
-            <button className={`btn ${buttonState}`} onClick = {FetchRecommendations} >Click Here</button>
+            <button className={`btn ${buttonState}`} onClick = {FetchRecommendations} >Recommend Me!</button>
 
         </div>
     )
