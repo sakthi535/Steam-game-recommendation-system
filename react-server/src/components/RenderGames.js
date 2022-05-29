@@ -28,8 +28,6 @@ export const RenderGames = (props) => {
     function handleClick(item){
         addGame(item)
         filteredData = []
-        props.input = ""
-        props.changeState(false)
         
     }
 

@@ -82,13 +82,17 @@ def members():
     res = [[0]]*len(userSelectedGames)
     gamesRecommended = []
 
-    for i in range(len(userSelectedGames)):
-        if i == 0:
+    for i in range(len(userSelectedGames)-1,-1,-1):
+        if i == len(userSelectedGames)-1:
             res[i] = test_annoy_knn(indexTable[userSelectedGames[i]], 10, 16845, 'angular')
             gamesRecommended = res[i]
+            print("result : ", gamesRecommended)
+
         else:
             newRecommendations = test_annoy_knn(indexTable[userSelectedGames[i]], 10, 16845, 'angular')
             gamesRecommended = selectNewGames(indexTable[userSelectedGames[i]], gamesRecommended, newRecommendations)
+            print("new :" , newRecommendations)
+            print("result : ", gamesRecommended)
 
     # res = test_annoy_knn(indexTable[userSelectedGames[0]], 10, 16845, 'angular')
 
