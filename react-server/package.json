@@ -1,7 +1,7 @@
 {
   "name": "react-server",
   "version": "0.1.0",
-  "proxy": "https://steam-game-recommendation.herokuapp.com/",
+  "proxy": "http://127.0.0.1:5000/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
