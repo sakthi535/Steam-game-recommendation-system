@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Header } from './components/Header';
 import { Description } from './components/Description';
 import { GetGame } from './components/GetGame';
