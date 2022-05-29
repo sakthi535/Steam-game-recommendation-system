@@ -15,8 +15,8 @@ app = Flask(__name__)
 
 # sys.path.append('../Steam-game-recommendation-system')
 
-dataset = pickle.load(open('./../Dataset/meta_games_dict.pkl','rb'))
-ml = pickle.load(open('./../Dataset/confusion_matrix_con.pkl','rb'))
+dataset = pickle.load(open('./Dataset/meta_games_dict.pkl','rb'))
+ml = pickle.load(open('./Dataset/confusion_matrix_con.pkl','rb'))
 
 
 #Using ANNOY library, finding recommendation for user selection
