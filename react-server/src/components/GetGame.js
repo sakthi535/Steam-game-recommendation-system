@@ -1,14 +1,18 @@
 import React,{useState} from 'react'
 import { RenderGames } from './RenderGames';
 
+// Component takes input from user and renders RenderGames component with entered text as props for query result.
+
 export const GetGame = () => {
 
+    // If search button is triggered query results will be displayed
     const [showResult, setShowResult] = useState(false);
+
+    // State variable for entered text in input
     const [Game, setGame] = useState('');
 
+
     let inputHandler = (e) => {
-        //convert input text to lower case
-        // e.preventDefault()
         var lowerCase = e.target.value.toLowerCase();
 
         setShowResult(false)
@@ -30,7 +34,8 @@ export const GetGame = () => {
                         </button>
                     </form>
 
-                    {showResult ==true &&  
+
+                    {showResult === true &&  
                         <RenderGames input={Game}/>
                     }
                 </div>

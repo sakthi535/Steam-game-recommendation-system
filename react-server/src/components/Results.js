@@ -1,35 +1,32 @@
-import React, { useState, useContext, useEffect, useCallback } from 'react'
+import React, { useState, useContext} from 'react'
 import { Carousel } from 'react-responsive-carousel';
+
+// Context Api is used to add, remove and view the selected games by user
 import { GlobalContext } from '../context/GlobalState';
+
+// Axios package is used to make post request to backend of application
 import axios from 'axios'
 
+// The component renders games recommended by backend of application based on user selection
 
 import '../App.css'
 
 export const Results = () => {
 
-    // Use Global Context to get user selected games 
+    // Global Context to get user selected games 
     const {Selected} = useContext(GlobalContext);
-    // console.log("check here : ",{"list":Selected})
 
-    // Games chosen to recommend
+    // Games chosen to recommend, response from post request
     const [data, setData] = useState({"list":Selected})
+    
     const [buttonState, setIsPending] = useState("")
 
-    console.log("check another here : ", data)
-    
     const selectedToBeSent = {"list":Selected};
     
-    // Post request to backend for recommended games
     function FetchRecommendations () {
         setIsPending("Disabled")
         axios.post(`/recommend/`,selectedToBeSent)
       .then(res => {
-
-        // console.log("rers her ",res);
-        // console.log("data herer", res.data['list']);
-        
-        // Set chosen data to display 
         setData(res.data)
         setIsPending("")
       })
@@ -39,8 +36,7 @@ export const Results = () => {
       
     }
 
-    // Iterate the array inside data object and create a div for each game to be displayed
-    // Api Call to retrieve poster image for each game with its appid/gameid
+    // Display images of recommended games as carousel 
     const selectedResult = data['list'].map((gameid) =>
         <div key="{game}">
             <img src={`https://cdn.cloudflare.steamstatic.com/steam/apps/${gameid}/header.jpg`} className="image" ></img>
@@ -51,12 +47,11 @@ export const Results = () => {
         <div>
             
             {data['list'] !==[] &&
-            // Display Images as carousel and not if no games are recommended
             <Carousel>
                 {selectedResult}
             </Carousel>}
 
-             
+            {/* Waiting for response from post request */}
             <button className={`btn ${buttonState}`} onClick = {FetchRecommendations} >Recommend Me!</button>
 
         </div>

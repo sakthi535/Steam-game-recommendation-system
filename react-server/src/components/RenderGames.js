@@ -1,16 +1,21 @@
 import React, { useContext } from 'react'
 import data3 from '../dataset.json'
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import '../App.css'
 
+// Context Api is used to add, remove and view the selected games by user
 import { GlobalContext } from '../context/GlobalState';
 
+// The component takes user's input as prop to search through dataset and display query result. 
 
 export const RenderGames = (props) => {
+
+    // AddGame method from global context adds game its appid to list of games  
     const { addGame } = useContext(GlobalContext);
 
     let maxcount = 5;
 
+    // Search through dataset that contains input, end the search if 5 games are selected
     let filteredData = [];
 
     for (let index = 0; index < Object.keys( data3.appid ).length; index++) {
